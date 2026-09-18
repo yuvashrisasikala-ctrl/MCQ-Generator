@@ -1,23 +1,16 @@
-import os
 import streamlit as st
-from dotenv import load_dotenv
 from huggingface_hub import InferenceClient
 
-load_dotenv()
+st.set_page_config(page_title="AI MCQ Generator")
 
-st.set_page_config(
-    page_title="AI MCQ Generator",
-    page_icon="🤖"
-)
-
-st.title("🤖 AI MCQ Generator")
+st.title("AI MCQ Generator")
 st.write("Generate multiple-choice questions using AI.")
 
-HF_TOKEN = os.getenv("HF_TOKEN")
-
-if not HF_TOKEN:
-    st.error("HF_TOKEN not found in .env file")
+if "HF_TOKEN" not in st.secrets:
+    st.error("HF_TOKEN is missing in Streamlit Secrets.")
     st.stop()
+
+HF_TOKEN = st.secrets["HF_TOKEN"]
 
 topic = st.text_input(
     "Enter Topic",
@@ -33,7 +26,7 @@ number = st.number_input(
 
 if st.button("Generate MCQs"):
 
-    if not topic:
+    if topic.strip() == "":
         st.warning("Please enter a topic.")
 
     else:
@@ -43,23 +36,22 @@ if st.button("Generate MCQs"):
             )
 
             prompt = f"""
-Generate {number} multiple-choice questions
-about {topic}.
+Generate {number} multiple-choice questions about {topic}.
 
-Each question must have:
+Each question must contain:
 1. Question
 2. Four options (A, B, C, D)
 3. Correct answer
 4. Short explanation
 
 Use simple English.
-Format the output clearly.
+Format clearly.
 """
 
             with st.spinner("Generating MCQs..."):
 
                 response = client.chat_completion(
-                    model="openai/gpt-oss-120b:fastest",
+                    model="openai/gpt-oss-120b",
                     messages=[
                         {
                             "role": "user",
@@ -69,10 +61,10 @@ Format the output clearly.
                     max_tokens=1500
                 )
 
-            answer = response.choices[0].message.content
+            result = response.choices[0].message.content
 
             st.subheader("Generated MCQs")
-            st.write(answer)
+            st.write(result)
 
         except Exception as e:
             st.error(f"Generation Error: {e}")
