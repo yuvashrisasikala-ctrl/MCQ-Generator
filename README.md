@@ -1,47 +1,64 @@
-# AI MCQ Generator Using Hugging Face
+# AI MCQ Generator
+
+## Live Application
+
+Access the deployed application:
+
+https://mcq-generator-eslp2qpkrhaz89qxn2sekq.streamlit.app/
+
 
 ## Project Overview
 
-The AI MCQ Generator is a Generative AI application developed using Python, Streamlit, and Hugging Face. The application allows users to enter an educational topic and generate multiple-choice questions with four options, correct answers, and short explanations.
+AI MCQ Generator is a Generative AI-based educational application developed using Python, Streamlit, and Hugging Face.
 
-This project demonstrates the integration of a Large Language Model with a Streamlit web application to support interactive learning and educational content generation.
+The application enables users to enter an educational topic and generate multiple-choice questions using an AI language model. Each generated question includes four answer options, the correct answer, and a short explanation.
 
-## Features
+The project demonstrates how Generative AI and web application technologies can be integrated to create an interactive learning support tool.
 
-- Generate multiple-choice questions using Generative AI
-- Enter a topic for question generation
-- Select the number of questions
-- Generate four options for each question
-- Display correct answers and explanations
-- Simple and user-friendly interface
-- Integration with the Hugging Face Inference API
-- Secure API token management
-- Web application development using Streamlit
+## Objectives
+
+- Automate the generation of educational multiple-choice questions.
+- Support topic-based learning and practice.
+- Provide questions with multiple answer options.
+- Display correct answers and short explanations.
+- Demonstrate the integration of a Large Language Model with Streamlit.
+- Implement secure API token management.
+
+## Key Features
+
+- Topic-based MCQ generation
+- Customizable number of questions
+- Four answer options for each question
+- Correct answer generation
+- Short explanations for generated questions
+- Interactive Streamlit interface
+- Hugging Face Inference API integration
+- Secure token management using Streamlit Secrets
 
 ## Technologies Used
 
 | Technology | Purpose |
 |------------|---------|
-| Python | Application development and programming |
-| Streamlit | Web application development |
+| Python | Application development |
+| Streamlit | Web application interface |
 | Hugging Face | AI model integration |
 | Hugging Face Inference API | AI-powered text generation |
-| python-dotenv | Environment variable management |
-| OpenAI GPT-OSS-120B | Language model used for text generation |
+| OpenAI GPT-OSS-120B | Language model used for question generation |
+
+## Application Workflow
+
+1. The user enters an educational topic.
+2. The user selects the required number of questions.
+3. The application sends the request to the Hugging Face Inference API.
+4. The AI model generates multiple-choice questions.
+5. The application displays the questions, options, correct answers, and explanations.
 
 ## Project Structure
 
-mcq/
-
-    app.py
-    requirements.txt
-    README.md
-    .gitignore
-    .env
-
-## Installation and Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+```text
+mcq-generator/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
